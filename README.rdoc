@@ -13,7 +13,7 @@ You can optionally generate MarkItUpController to be able to use default preview
   script/generate miu_controller
 
 Also you will have to download jQuery[http://jquery.com/] and make it {play nicely with Prototype}[http://docs.jquery.com/Using_jQuery_with_Other_Libraries] if you are using prototype 
-
+  
 == Examples
 
 === The most simple usage with preset defaults
@@ -53,13 +53,15 @@ Also you will have to download jQuery[http://jquery.com/] and make it {play nice
   
 === Insert, Replace, Delete buttons
 
+Here is the syntax
+
   MarkItUp.replace_button(position, new_button)  # replaces button at exact position
   MarkItUp.insert_button(new_button) # inserts button at the end
   MarkItUp.insert_button(position, new_button) # inserts button at exact position (buttons after position are moved up)
   MarkItUp.delete_button(position) # deletes button at exact position
   MarkItUp.delete_button(name) # deletes button which matches name
 
- 
+and here is example
 
   <html>
   <head>
@@ -188,6 +190,52 @@ Here is the example how you can change preview depending which layout you select
   <% end %>
   </body>
   </html>
+
+== Global settings
+
+=== Root
+
+Root relative to [Rails.root]/public ("markitup" by default)
+
+  MarkItUp.root = "/path/to/mark_it_up"
+
+=== Skin
+
+See availabel or place your skin in public/markitup/skins ("markitup" by default)
+
+  MarkItUp.skin = "my_skin"
+
+=== Default icon 
+
+Icon that will be used for button if neither :icon => "icon_name" or :className => "class_name" isn't provided ('button' by default)
+
+  MarkItUp.default_icon = "my_icon"
+
+=== Settings 
+
+To get the list of default settings call
+
+  MarkItUp.default_settings
+
+See the list of all available settings at http://markitup.jaysalvat.com/documentation
+
+  MarkItUp.setting = mySettingsHash
+  
+=== Buttons
+
+To get the list of default buttons call
+
+  MarkItUp.default_buttons
+
+To add your custom list of buttons
+
+  MarkItUp.buttons = [
+    { :name => 'Bold', :icon => 'bold', :key => 'B', :openWith => '(!(<strong>|!|<b>)!)', :closeWith => '(!(</strong>|!|</b>)!)' },
+    { :name => 'Italic', :icon => 'italic', :key => 'I', :openWith => '(!(<em>|!|<i>)!)', :closeWith => '(!(<em>|!|<i>)!)' },
+    { :name => 'Stroke through', :icon => 'stroke', :key => 'S', :openWith => '<del>', :closeWith => '</del>' }
+  ]
+  
+To insert, replace, delete buttons see examples
   
 == Drawbacks
 
@@ -200,6 +248,7 @@ Till then use :call => "MyNamespace.myFunction"
 == Credits
 
 {jQuery Team}[http://jquery.com/] for jQuery
+
 {Jay Salvat}[http://jaysalvat.com] for markItUp! plugin
   
 
