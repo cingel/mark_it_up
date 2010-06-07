@@ -6,12 +6,15 @@ MarkItUp is Rails plugin that helps you turn any textarea into a markup editor. 
 
   script/plugin install git://github.com/cingel/mark_it_up.git
   
-You can optionally generate MarkItUpController to be able to use.
+During install all assets will be copied to [Rails.root]/public/mark_it_up
+  
+You can optionally generate MarkItUpController to be able to use default preview parser.
+
+  script/generate miu_controller
+
 Also you will have to download jQuery[http://jquery.com/] and make it {play nicely with Prototype}[http://docs.jquery.com/Using_jQuery_with_Other_Libraries] if you are using prototype 
 
-During install all assets will be copied to [Rails.root]/public/mark_it_up
-
-== Example
+== Examples
 
 === The most simple usage with preset defaults
 
@@ -56,6 +59,8 @@ During install all assets will be copied to [Rails.root]/public/mark_it_up
   MarkItUp.delete_button(position) # deletes button at exact position
   MarkItUp.delete_button(name) # deletes button which matches name
 
+ 
+
   <html>
   <head>
   <%= javascript_include_tag "jquery" %>
@@ -79,7 +84,7 @@ During install all assets will be copied to [Rails.root]/public/mark_it_up
   
 === Custom settings
 
-  See http://markitup.jaysalvat.com/documentation/ for the complete list of available settings
+See http://markitup.jaysalvat.com/documentation/ for the complete list of available settings
 
   <html>
   <head>
@@ -184,7 +189,18 @@ Here is the example how you can change preview depending which layout you select
   </body>
   </html>
   
+== Drawbacks
+
+Still have to find a way to provide function assignment to replaceWith
+  
+  replaceWith: function() { return "something from function" }
+  
+Till then use :call => "MyNamespace.myFunction"
+  
 == Credits
+
+{jQuery Team}[http://jquery.com/] for jQuery
+{Jay Salvat}[http://jaysalvat.com] for markItUp! plugin
   
 
 Copyright (c) 2010 Vlado Cingel, released under the MIT license
