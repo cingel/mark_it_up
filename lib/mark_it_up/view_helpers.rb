@@ -25,7 +25,7 @@ module MarkItUp
     end
     
     def include_mark_it_up_stylesheets
-      css = %{\n<link href="/markitup/skins/#{MarkItUp.skin}/style.css" media="all" rel="stylesheet" type="text/css" />}
+      css = %{\n<link href="/#{MarkItUp.root}/skins/#{MarkItUp.skin}/style.css" media="all" rel="stylesheet" type="text/css" />}
       inline_css = MarkItUp.markup_set.inject("") do |x,btn| 
         icon = btn[:icon].blank? ? MarkItUp.default_icon : btn[:icon]
         icon.concat(".png") unless icon.match(MarkItUp::ICONS_EXTENSIONS_REGEXP)
