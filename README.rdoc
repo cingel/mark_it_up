@@ -1,0 +1,190 @@
+= MarkItUp
+
+MarkItUp is Rails plugin that helps you turn any textarea into a markup editor. It is based on excellent {markItUp jQuery plugin}[http://markitup.jaysalvat.com/].
+
+== Installation
+
+  script/plugin install git://github.com/cingel/mark_it_up.git
+  
+You can optionally generate MarkItUpController to be able to use.
+Also you will have to download jQuery[http://jquery.com/] and make it {play nicely with Prototype}[http://docs.jquery.com/Using_jQuery_with_Other_Libraries] if you are using prototype 
+
+During install all assets will be copied to [Rails.root]/public/mark_it_up
+
+== Example
+
+=== The most simple usage with preset defaults
+
+  <html>
+  <head>
+    <%= javascript_include_tag "path/to/jquery" %>
+    <%= mark_it_up '#miu_test' %>
+  </head>
+  <body>
+    <% form_tag do %>
+      <%= text_area_tag "miu_test" %>
+    <% end %>
+  </body>
+  </html>
+  
+=== Define custom buttons
+  
+  <html>
+  <head>
+  <%= javascript_include_tag "jquery" %>
+  <% 
+    MarkItUp.buttons = [
+      { :name => 'Bold', :icon => 'bold', :key => 'B', :openWith => '(!(<strong>|!|<b>)!)', :closeWith => '(!(</strong>|!|</b>)!)' },
+      { :name => 'Italic', :icon => 'italic', :key => 'I', :openWith => '(!(<em>|!|<i>)!)', :closeWith => '(!(<em>|!|<i>)!)' },
+      { :name => 'Stroke through', :icon => 'stroke', :key => 'S', :openWith => '<del>', :closeWith => '</del>' }
+    ]
+  %>
+  <%= mark_it_up '#miu_test' %>
+  </head>
+  <body>
+  <% form_tag do %>
+    <%= text_area_tag "miu_test" %>
+  <% end %>
+  </body>
+  </html>
+  
+=== Insert, Replace, Delete buttons
+
+  MarkItUp.replace_button(position, new_button)  # replaces button at exact position
+  MarkItUp.insert_button(new_button) # inserts button at the end
+  MarkItUp.insert_button(position, new_button) # inserts button at exact position (buttons after position are moved up)
+  MarkItUp.delete_button(position) # deletes button at exact position
+  MarkItUp.delete_button(name) # deletes button which matches name
+
+  <html>
+  <head>
+  <%= javascript_include_tag "jquery" %>
+  <% 
+    MarkItUp.buttons = MarkItUp.default_buttons
+    MarkItUp.replace_button(15, { :name => 'Image', :icon => "image", :key => 'P', :replaceWith => '<img src="/path" alt="" />' })
+    MarkItUp.insert_button(16, { :name => 'Some button', :icon => 'some_icon', :key => 'X', :replaceWith => 'somtehing' }) # insert new button at specific position 
+    MarkItUp.insert_button(17, { :separator => '---------------' })
+    MarkItUp.insert_button({ :name => 'Some other button', :icon => 'some_other_icon', :key => 'Y', :replaceWith => 'something else' })
+    MarkItUp.delete_button(3)
+    MarkItUp.delete_button("Bold")
+  %>
+  <%= mark_it_up '#miu_test' %>
+  </head>
+  <body>
+  <% form_tag do %>
+    <%= text_area_tag "miu_test" %>
+  <% end %>
+  </body>
+  </html>
+  
+=== Custom settings
+
+  See http://markitup.jaysalvat.com/documentation/ for the complete list of available settings
+
+  <html>
+  <head>
+  <%= javascript_include_tag "jquery" %>
+  <% 
+    miu_settings = MarkItUp.settings
+    miu_settings[:previewParserPath] = "/my/preview/path?layout=home"
+  %>
+  <%= mark_it_up '#miu_test', miu_settings %>
+  </head>
+  <body>
+  <% form_tag do %>
+    <%= text_area_tag "miu_test" %>
+  <% end %>
+  </body>
+  </html>
+  
+=== Call your custom function
+
+  <html>
+  <head>
+  <script type="text/javascript">
+  MyNamespace = {
+    someFunction: function() {
+      jQuery.markItUp({ target: '#miu_test', replaceWith: 'text from some function' });
+    },
+    someOtherFunction: function() {
+      jQuery.markItUp({ target: '#miu_test', replaceWith: 'text from some other function' });
+    }
+  }  
+  </script>
+  <%= javascript_include_tag "jquery" %>
+  <%
+    MarkItUp.buttons = MarkItUp.default_buttons
+    MarkItUp.insert_button({ :name => 'Some button', :key => 'S', :call => 'MyNamespace.someFunction' })
+    MarkItUp.insert_button({ :name => 'Some other button', :key => 'O', :call => 'MyNamespace.someOtherFunction' })
+  %>
+  <%= mark_it_up '#miu_test' %>
+  </head>
+  <body>
+  <% form_tag do %>
+    <%= text_area_tag "miu_test" %>
+  <% end %>
+  </body>
+  </html>
+  
+  
+=== Real complex usage
+  
+Here is the example how you can change preview depending which layout you select.
+
+  <html>
+  <head>
+  <!-- First we include prototype.js and jquery.js -->
+  <%= javascript_include_tag "prototype" %>
+  <%= javascript_include_tag "jquery" %>
+  <!-- Then we must make jQuery and Prototype live together -->
+  <script type="text/javascript" >
+    var $j = jQuery.noConflict();
+  </script>
+  <!-- We define some custom function. We will use MyNamespace.reloadMarkItUp() in our layout select box observer. -->
+  <script type="text/javascript">
+  MyNamespace = {
+    someFunction: function() {
+      $j.markItUp({ target: '#miu_test', replaceWith: 'text from some function' });
+    },
+    someOtherFunction: function() {
+      $j.markItUp({ target: '#miu_test', replaceWith: 'text from some other function' });
+    },
+    reloadMarkItUp: function() {
+      $j('#miu_test').markItUpRemove();
+      $j("#miu_test").markItUp(miuSettings);
+    }
+  } 
+  </script>
+  <!-- We load markItUp assets. See vendor/plugins/mark_it_up/lib/mark_it_up/view_helpers.rb -->
+  <%= include_mark_it_up_javascripts %>
+  <%= include_mark_it_up_stylesheets %>
+  <!-- We insert few buttons and chnage preview parser -->
+  <%
+    MarkItUp.buttons = MarkItUp.default_buttons
+    MarkItUp.insert_button({ :name => 'Some button', :key => 'S', :call => 'MyNamespace.someFunction' })
+    MarkItUp.insert_button({ :name => 'Some other button', :key => 'O', :call => 'MyNamespace.someOtherFunction' })
+    miu_settings = MarkItUp.settings
+    miu_settings[:previewParserPath] = "/my/preview/path?layout=home;"
+  %>
+  <!-- Settings are assigned to miuSettings so we can access them later in layout observer later -->
+  <script type="text/javascript">
+    miuSettings = <%= MarkItUp.format_settings(miu_settings) %>;
+    $j(document).ready(function() {
+       $j("#miu_test").markItUp(miuSettings);
+     });
+  </script>
+  </head>
+  <body>
+  <% form_tag do %>
+    <%= select_tag "layout", options_for_select(%w(home admin default)) %>
+    <!-- We observe layout select box and so we our preview can use right layout -->
+    <%= observe_field :layout, :function => "miuSettings.previewParserPath='/my/preview/path?layout='+value;MyNamespace.reloadMarkItUp()" %>
+    <%= text_area_tag "miu_test" %>
+  <% end %>
+  </body>
+  </html>
+  
+== Credits
+  
+
+Copyright (c) 2010 Vlado Cingel, released under the MIT license
