@@ -201,7 +201,7 @@ Root relative to [Rails.root]/public ("markitup" by default)
 
 === Skin
 
-See availabel or place your skin in public/markitup/skins ("markitup" by default)
+See available or place your skin in public/markitup/skins ("markitup" by default)
 
   MarkItUp.skin = "my_skin"
 
@@ -235,7 +235,7 @@ To add your custom list of buttons
     { :name => 'Stroke through', :icon => 'stroke', :key => 'S', :openWith => '<del>', :closeWith => '</del>' }
   ]
   
-To insert, replace, delete buttons see examples
+To insert, replace or delete buttons use <tt>MarkItUp.inser_button</tt>, <tt>MarkItUp.replace_button</tt> or <tt>MarkItUp.delete_button</tt> (see examples)
   
 == Drawbacks
 
