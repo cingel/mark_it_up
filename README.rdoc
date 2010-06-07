@@ -195,7 +195,7 @@ Here is the example how you can change preview depending which layout you select
 
 === Root
 
-Root relative to [Rails.root]/public ("markitup" by default)
+Root relative to [Rails.root]/public ("mark_it_up" by default)
 
   MarkItUp.root = "/path/to/mark_it_up"
 

@@ -1,5 +1,5 @@
 module MarkItUp
-  DEFAULT_ROOT = "markitup"
+  DEFAULT_ROOT = "mark_it_up"
   ICONS_EXTENSIONS_REGEXP = /\.(png|jpg|jpeg|gif)$/i
   
   @@settings = nil
