@@ -12,9 +12,11 @@ You can optionally generate MarkItUpController to be able to use default preview
 
   script/generate miu_controller
 
-Also you will have to download jQuery[http://jquery.com/] and make it {play nicely with Prototype}[http://docs.jquery.com/Using_jQuery_with_Other_Libraries] if you are using prototype 
+Also you will have to download jQuery[http://jquery.com] and make it {play nicely with Prototype}[http://docs.jquery.com/Using_jQuery_with_Other_Libraries] if you are using prototype 
   
 == Examples
+
+You can see all examples here[http://markitup.cingel.hr]
 
 === The most simple usage with preset defaults
 
@@ -68,10 +70,10 @@ and here is example
   <%= javascript_include_tag "jquery" %>
   <% 
     MarkItUp.buttons = MarkItUp.default_buttons
-    MarkItUp.replace_button(15, { :name => 'Image', :icon => "image", :key => 'P', :replaceWith => '<img src="/path" alt="" />' })
-    MarkItUp.insert_button(16, { :name => 'Some button', :icon => 'some_icon', :key => 'X', :replaceWith => 'somtehing' }) # insert new button at specific position 
+    MarkItUp.replace_button(14, { :name => 'Image', :icon => "image", :key => 'P', :replaceWith => '<img src="/path" alt="" />' })
+    MarkItUp.insert_button(16, { :name => 'Some button', :icon => 'some_icon', :key => 'X', :replaceWith => 'something' }) # insert new button at specific position 
     MarkItUp.insert_button(17, { :separator => '---------------' })
-    MarkItUp.insert_button({ :name => 'Some other button', :icon => 'some_other_icon', :key => 'Y', :replaceWith => 'something else' })
+    MarkItUp.insert_button({ :name => 'Some other button', :icon => 'some_other_icon', :key => 'Y', :replaceWith => 'something else' }) # insert new button to the end
     MarkItUp.delete_button(3)
     MarkItUp.delete_button("Bold")
   %>
