@@ -11,7 +11,7 @@ class MiuControllerGenerator < Rails::Generator::Base
   
   def add_route(m)
     preview_route = %{
-map.mark_it_up_preview "mark_it_up/preview", :controller => "mark_it_up", :action => "preview"
+  map.mark_it_up_preview "mark_it_up/preview", :controller => "mark_it_up", :action => "preview"
     }
     m.gsub_file("config/routes.rb", "ActionController::Routing::Routes.draw do |map|", "ActionController::Routing::Routes.draw do |map|#{preview_route}")
   end
