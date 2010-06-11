@@ -16,7 +16,7 @@ Also you will have to download jQuery[http://jquery.com] and make it {play nicel
   
 == Examples
 
-*DEMO*: You can see all examples in action on http://markitup.cingel.hr[http://markitup.cingel.hr]
+*DEMO*: You can see all examples in action on http://markitup.cingel.hr
 
 === The most simple usage with preset defaults
 
