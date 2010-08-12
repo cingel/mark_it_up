@@ -16,12 +16,12 @@ module MarkItUp
   });
 </script>
       }
-      html
+      return_html_considering_rails_version(html)
     end
     
     def include_mark_it_up_javascripts
       js_file_name = Rails.env.production? ? "jquery.markitup.pack" : "jquery.markitup"
-      javascript_include_tag("/#{MarkItUp.root}/#{js_file_name}.js")
+      return_html_considering_rails_version(javascript_include_tag("/#{MarkItUp.root}/#{js_file_name}.js"))
     end
     
     def include_mark_it_up_stylesheets
@@ -36,7 +36,15 @@ module MarkItUp
 #{inline_css}
 </style>        
       }
+      return_html_considering_rails_version(css)
     end
+    
+    
+    private
+    
+      def return_html_considering_rails_version(html)
+        (Rails::VERSION::MAJOR == 3) ? html.html_safe : html 
+      end
     
   end
 end
