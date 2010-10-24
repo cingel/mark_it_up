@@ -5,15 +5,19 @@ MarkItUp is Rails plugin that helps you turn any textarea into a markup editor. 
 == Installation
 
   script/plugin install git://github.com/cingel/mark_it_up.git
-  
+
+With Rails 3 you have to use:
+
+    rails plugin install git://github.com/cingel/mark_it_up.git
+
 During install all assets will be copied to [Rails.root]/public/mark_it_up
-  
+
 You can optionally generate MarkItUpController to be able to use default preview parser.
 
   script/generate miu_controller
 
-Also you will have to download jQuery[http://jquery.com] and make it {play nicely with Prototype}[http://docs.jquery.com/Using_jQuery_with_Other_Libraries] if you are using prototype 
-  
+Also you will have to download jQuery[http://jquery.com] and make it {play nicely with Prototype}[http://docs.jquery.com/Using_jQuery_with_Other_Libraries] if you are using prototype
+
 == Examples
 
 *DEMO*: You can see all examples in action on http://markitup.cingel.hr
@@ -31,13 +35,13 @@ Also you will have to download jQuery[http://jquery.com] and make it {play nicel
     <% end %>
   </body>
   </html>
-  
+
 === Define custom buttons
-  
+
   <html>
   <head>
   <%= javascript_include_tag "jquery" %>
-  <% 
+  <%
     MarkItUp.buttons = [
       { :name => 'Bold', :icon => 'bold', :key => 'B', :openWith => '(!(<strong>|!|<b>)!)', :closeWith => '(!(</strong>|!|</b>)!)' },
       { :name => 'Italic', :icon => 'italic', :key => 'I', :openWith => '(!(<em>|!|<i>)!)', :closeWith => '(!(<em>|!|<i>)!)' },
@@ -52,7 +56,7 @@ Also you will have to download jQuery[http://jquery.com] and make it {play nicel
   <% end %>
   </body>
   </html>
-  
+
 === Insert, Replace, Delete buttons
 
 Here is the syntax
@@ -68,10 +72,10 @@ and here is example
   <html>
   <head>
   <%= javascript_include_tag "jquery" %>
-  <% 
+  <%
     MarkItUp.buttons = MarkItUp.default_buttons
     MarkItUp.replace_button(14, { :name => 'Image', :icon => "image", :key => 'P', :replaceWith => '<img src="/path" alt="" />' })
-    MarkItUp.insert_button(16, { :name => 'Some button', :icon => 'some_icon', :key => 'X', :replaceWith => 'something' }) # insert new button at specific position 
+    MarkItUp.insert_button(16, { :name => 'Some button', :icon => 'some_icon', :key => 'X', :replaceWith => 'something' }) # insert new button at specific position
     MarkItUp.insert_button(17, { :separator => '---------------' })
     MarkItUp.insert_button({ :name => 'Some other button', :icon => 'some_other_icon', :key => 'Y', :replaceWith => 'something else' }) # insert new button to the end
     MarkItUp.delete_button(3)
@@ -85,7 +89,7 @@ and here is example
   <% end %>
   </body>
   </html>
-  
+
 === Custom settings
 
 See http://markitup.jaysalvat.com/documentation/ for the complete list of available settings
@@ -93,7 +97,7 @@ See http://markitup.jaysalvat.com/documentation/ for the complete list of availa
   <html>
   <head>
   <%= javascript_include_tag "jquery" %>
-  <% 
+  <%
     miu_settings = MarkItUp.settings
     miu_settings[:previewParserPath] = "/my/preview/path?layout=home"
   %>
@@ -105,7 +109,7 @@ See http://markitup.jaysalvat.com/documentation/ for the complete list of availa
   <% end %>
   </body>
   </html>
-  
+
 === Call your custom function
 
   <html>
@@ -118,7 +122,7 @@ See http://markitup.jaysalvat.com/documentation/ for the complete list of availa
     someOtherFunction: function() {
       jQuery.markItUp({ target: '#miu_test', replaceWith: 'text from some other function' });
     }
-  }  
+  }
   </script>
   <%= javascript_include_tag "jquery" %>
   <%
@@ -134,10 +138,9 @@ See http://markitup.jaysalvat.com/documentation/ for the complete list of availa
   <% end %>
   </body>
   </html>
-  
-  
+
 === Real complex usage
-  
+
 Here is the example how you can change preview depending which layout you select.
 
   <html>
@@ -162,7 +165,7 @@ Here is the example how you can change preview depending which layout you select
       $j('#miu_test').markItUpRemove();
       $j("#miu_test").markItUp(miuSettings);
     }
-  } 
+  }
   </script>
   <!-- We load markItUp assets. See vendor/plugins/mark_it_up/lib/mark_it_up/view_helpers.rb -->
   <%= include_mark_it_up_javascripts %>
@@ -207,13 +210,13 @@ See available or place your skin in public/markitup/skins ("markitup" by default
 
   MarkItUp.skin = "my_skin"
 
-=== Default icon 
+=== Default icon
 
 Icon that will be used for button if neither :icon => "icon_name" or :className => "class_name" isn't provided ('button' by default)
 
   MarkItUp.default_icon = "my_icon"
 
-=== Settings 
+=== Settings
 
 To get the list of default settings call
 
@@ -222,7 +225,7 @@ To get the list of default settings call
 See the list of all available settings at http://markitup.jaysalvat.com/documentation
 
   MarkItUp.setting = mySettingsHash
-  
+
 === Buttons
 
 To get the list of default buttons call
@@ -236,22 +239,21 @@ To add your custom list of buttons
     { :name => 'Italic', :icon => 'italic', :key => 'I', :openWith => '(!(<em>|!|<i>)!)', :closeWith => '(!(<em>|!|<i>)!)' },
     { :name => 'Stroke through', :icon => 'stroke', :key => 'S', :openWith => '<del>', :closeWith => '</del>' }
   ]
-  
+
 To insert, replace or delete buttons use <tt>MarkItUp.inser_button</tt>, <tt>MarkItUp.replace_button</tt> or <tt>MarkItUp.delete_button</tt> (see examples)
-  
+
 == Drawbacks
 
 Still have to find a way to provide function assignment to replaceWith
-  
+
   replaceWith: function() { return "something from function" }
-  
+
 Till then use :call => "MyNamespace.myFunction"
-  
+
 == Credits
 
 {jQuery Team}[http://jquery.com/] for jQuery
 
 {Jay Salvat}[http://jaysalvat.com] for markItUp! plugin
-  
 
 Copyright (c) 2010 Vlado Cingel, released under the MIT license
