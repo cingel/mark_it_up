@@ -1,3 +1,7 @@
+require 'mark_it_up/view_helpers'
+#if Rails::VERSION::MAJOR == 2
+#else
+#end
 module MarkItUp
   DEFAULT_ROOT = "mark_it_up"
   ICONS_EXTENSIONS_REGEXP = /\.(png|jpg|jpeg|gif)$/i
