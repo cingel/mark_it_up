@@ -274,4 +274,5 @@ If eveything goes well t will eventually be merged to the main mark_it_up projec
 {Cingel}[http://github.com/cingel/mark_it_up] for the mark_it_up Rails plugin
 
 Copyright (c) 2010 Vlado Cingel, released under the MIT license
+
 Copyright (c) 2010 Baptiste Grenier, released under the MIT license
