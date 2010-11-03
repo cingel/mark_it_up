@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{mark_it_up}
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Baptiste Grenier"]
@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
-     "lib/generators/miucontroller_generator.rb",
+     "lib/generators/miu_controller_generator.rb",
      "lib/generators/templates/app/controllers/mark_it_up_controller.rb",
      "lib/generators/templates/app/views/mark_it_up/preview.html.erb",
      "lib/mark_it_up.rb",
