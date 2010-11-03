@@ -4,13 +4,13 @@ MarkItUp is Rails plugin that helps you turn any textarea into a markup editor. 
 
 == Installation
 
+  rails plugin install git://github.com/cingel/mark_it_up.git
+
+With Rails 2.X you have to use:
+
   script/plugin install git://github.com/cingel/mark_it_up.git
 
-With Rails 3 you have to use:
-
-    rails plugin install git://github.com/cingel/mark_it_up.git
-
-During install all assets will be copied to [Rails.root]/public/mark_it_up
+Copy all assets from [Rails.root]/vendor/plugins/mark_it_up/lib/public/mark_it_up to [Rails.root]/public/mark_it_up
 
 You can optionally generate MarkItUpController to be able to use default preview parser.
 
@@ -254,16 +254,9 @@ Still have to find a way to provide function assignment to replaceWith
 
 Till then use :call => "MyNamespace.myFunction"
 
-== Fork's reason
+== Contributors
 
-This fork is an attempt of creating a gem for the plugin that would work for both
-Rails 2 and 3.
-The original plugin was not completely integrated wwith Rails 3, hence this
-fork.
-
-For now only Rails 3 has been tested.
-
-If eveything goes well t will eventually be merged to the main mark_it_up project.
+{gwarf Baptiste Grenier}http://github.com/gwarf
 
 == Credits
 
@@ -271,8 +264,4 @@ If eveything goes well t will eventually be merged to the main mark_it_up projec
 
 {Jay Salvat}[http://jaysalvat.com] for markItUp! plugin
 
-{Cingel}[http://github.com/cingel/mark_it_up] for the mark_it_up Rails plugin
-
 Copyright (c) 2010 Vlado Cingel, released under the MIT license
-
-Copyright (c) 2010 Baptiste Grenier, released under the MIT license
