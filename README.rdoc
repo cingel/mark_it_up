@@ -256,7 +256,7 @@ Till then use :call => "MyNamespace.myFunction"
 
 == Contributors
 
-{gwarf Baptiste Grenier}http://github.com/gwarf
+{Baptiste Grenier}[http://github.com/gwarf]
 
 == Credits
 
