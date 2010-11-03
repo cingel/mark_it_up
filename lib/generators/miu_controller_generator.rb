@@ -1,4 +1,4 @@
-class MiucontrollerGenerator < Rails::Generators::Base
+class MiuControllerGenerator < Rails::Generators::Base
   source_root File.expand_path("../templates", __FILE__)
 
   desc "This generator creates the mark it up controller, view and route"
