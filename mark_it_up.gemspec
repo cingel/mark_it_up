@@ -5,17 +5,22 @@
 
 Gem::Specification.new do |s|
   s.name = %q{mark_it_up}
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Baptiste Grenier"]
-  s.date = %q{2010-10-31}
-  s.description = %q{Mark It Up editor integration for rails}
+  s.date = %q{2010-11-03}
+  s.description = %q{Mark It Up editor integration for rails 3, all the real work is done by the code from http://github.com/cingel/mark_it_up}
   s.email = %q{baptiste@bapt.name}
+  s.extra_rdoc_files = [
+    "README.rdoc"
+  ]
   s.files = [
-    "Rakefile",
+    "MIT-LICENSE",
+     "README.rdoc",
+     "Rakefile",
      "VERSION",
-     "lib/generators/miucontroller_generator.rb",
+     "lib/generators/miu_controller_generator.rb",
      "lib/generators/templates/app/controllers/mark_it_up_controller.rb",
      "lib/generators/templates/app/views/mark_it_up/preview.html.erb",
      "lib/mark_it_up.rb",
