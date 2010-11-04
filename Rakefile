@@ -1,18 +1,23 @@
-require "rake"
+require 'rake'
+require 'rake/testtask'
+require 'rake/rdoctask'
 
-begin
-  require "jeweler"
-  Jeweler::Tasks.new do |gem|
-    gem.name = "mark_it_up"
-    gem.summary = "Mark It Up integration for rails"
-    gem.description = "Mark It Up editor integration for rails 3, all the real work is done by the code from http://github.com/cingel/mark_it_up"
-    gem.email = "baptiste@bapt.name"
-    gem.homepage = "http://github.com/gwarf/mark_it_up"
-    gem.authors = ["Baptiste Grenier"]
-    gem.files = Dir["*", "{lib}/**/*"]
-  end
+desc 'Default: run unit tests.'
+task :default => :test
 
-  Jeweler::GemcutterTasks.new
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
+desc 'Test the mark_it_up plugin.'
+Rake::TestTask.new(:test) do |t|
+  t.libs << 'lib'
+  t.libs << 'test'
+  t.pattern = 'test/**/*_test.rb'
+  t.verbose = true
+end
+
+desc 'Generate documentation for the mark_it_up plugin.'
+Rake::RDocTask.new(:rdoc) do |rdoc|
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title    = 'MarkItUp'
+  rdoc.options << '--line-numbers' << '--inline-source'
+  rdoc.rdoc_files.include('README')
+  rdoc.rdoc_files.include('lib/**/*.rb')
 end

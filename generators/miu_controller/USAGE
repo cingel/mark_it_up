@@ -1,0 +1,5 @@
+Description:
+    Creates MiuController with routes. Used primarily for preview.
+
+Example:
+    ./script/generate miu_controller
