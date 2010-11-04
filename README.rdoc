@@ -6,21 +6,14 @@ MarkItUp is Rails plugin that helps you turn any textarea into a markup editor. 
 
   rails plugin install git://github.com/cingel/mark_it_up.git
 
-With Rails 2.X you have to use:
+Generate MarkItUpController to be able to use default preview parser.
 
-  script/plugin install git://github.com/cingel/mark_it_up.git
+    rails generate miu_controller
 
-Copy all assets from [Rails.root]/vendor/plugins/mark_it_up/lib/public/mark_it_up to [Rails.root]/public/mark_it_up
+This will all copy all assets from [Rails.root]/vendor/plugins/mark_it_up/lib/public/mark_it_up to [Rails.root]/public/mark_it_up
 
-You can optionally generate MarkItUpController to be able to use default preview parser.
-
-  script/generate miu_controller
-
-With Rails 3 you have to use:
-
-  rails generate miu_controller
-
-Also you will have to download jQuery[http://jquery.com] and make it {play nicely with Prototype}[http://docs.jquery.com/Using_jQuery_with_Other_Libraries] if you are using prototype
+You will also need jQuery[http://jquery.com] (You can use CDN hosted jQuery). 
+<%= javascript_include_tag "http://code.jquery.com/jquery-1.4.3.min.js" %>
 
 == Examples
 
@@ -246,13 +239,11 @@ To add your custom list of buttons
 
 To insert, replace or delete buttons use <tt>MarkItUp.inser_button</tt>, <tt>MarkItUp.replace_button</tt> or <tt>MarkItUp.delete_button</tt> (see examples)
 
-== Drawbacks
+== TODO
 
-Still have to find a way to provide function assignment to replaceWith
-
-  replaceWith: function() { return "something from function" }
-
-Till then use :call => "MyNamespace.myFunction"
+- Find a way to provide function assignment to replaceWith ( replaceWith: function() { return "something from function" } ). Till then use :call => "MyNamespace.myFunction"
+- Render icons using CSS sprites (one image that contains all icons).
+- Extend generator to also create view with simple example in app/views/mark_it_up/example.html.erb (Or maybe multiple examples?!).
 
 == Contributors
 

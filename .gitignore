@@ -1,2 +1,4 @@
 # ignore pkg dir
 pkg/
+
+.DS_Store
