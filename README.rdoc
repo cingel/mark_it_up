@@ -2,7 +2,7 @@
 
 MarkItUp is Rails plugin that helps you turn any textarea into a markup editor. It is based on excellent {markItUp jQuery plugin}[http://markitup.jaysalvat.com/].
 
-*THIS IS A RAILS 2.x PLUGIN, IF YOU ARE USING RAILS 3.x PLEASE USE THE GEM INSTEAD (gem install mark_it_up) OR SWITCH TO MASTER BRANCH*
+*THIS IS A RAILS 2.x PLUGIN, FOR RAILS 3.x USE THE GEM OR SWITCH TO MASTER BRANCH*
 
 == Installation
 
@@ -242,11 +242,9 @@ To insert, replace or delete buttons use <tt>MarkItUp.inser_button</tt>, <tt>Mar
 
 == TODO
 
-- Find a way to provide function assignment to replaceWith ( replaceWith: function() { return "something from function" } )
+- Find a way to provide function assignment to replaceWith ( replaceWith: function() { return "something from function" } ). Till then use :call => "MyNamespace.myFunction"
   
 - Render icons using CSS sprites (one image that contains all icons).
-
-Till then use :call => "MyNamespace.myFunction"
 
 == Contributors
 
