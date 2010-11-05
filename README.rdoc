@@ -6,15 +6,31 @@ MarkItUp is Rails plugin that helps you turn any textarea into a markup editor. 
 
 == Installation
 
+=== As a plugin
+
   rails plugin install git://github.com/cingel/mark_it_up.git
 
-Generate MarkItUpController to be able to use default preview parser.
+=== As a gem
+
+  gem install mark_it_up
+
+=== Using bundler
+
+Add gem to the Gemfile
+
+  gem 'mark_it_up'
+
+Bundle the gem
+
+  bundle install
+
+=== Generate MarkItUpController to be able to use default preview parser.
 
     rails generate miu_controller
 
 This will copy all assets from [Rails.root]/vendor/plugins/mark_it_up/lib/public/mark_it_up to [Rails.root]/public/mark_it_up
 
-You will also need jQuery[http://jquery.com]. 
+You will also need jQuery[http://jquery.com].
 
   <%= javascript_include_tag "path/to/jquery" %>
 
