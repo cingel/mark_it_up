@@ -9,6 +9,10 @@ MarkItUp is Rails plugin that helps you turn any textarea into a markup editor. 
 Add this to your Gemfile
 
   gem 'mark_it_up', :git => 'git://github.com/cingel/mark_it_up.git'
+  
+Don't forget to run
+
+  bundle install
 
 Generate MarkItUpController to be able to use default preview parser.
 
