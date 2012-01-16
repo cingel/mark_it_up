@@ -6,13 +6,15 @@ MarkItUp is Rails plugin that helps you turn any textarea into a markup editor. 
 
 == Installation
 
-  rails plugin install git://github.com/cingel/mark_it_up.git
+Add this to your Gemfile
+
+  gem 'mark_it_up', :git => 'git://github.com/cingel/mark_it_up.git'
 
 Generate MarkItUpController to be able to use default preview parser.
 
     rails generate miu_controller
 
-This will copy all assets from [Rails.root]/vendor/plugins/mark_it_up/lib/public/mark_it_up to [Rails.root]/public/mark_it_up
+This will copy all assets to [Rails.root]/public/mark_it_up
 
 You will also need jQuery[http://jquery.com]. 
 
@@ -30,7 +32,7 @@ You will also need jQuery[http://jquery.com].
     <%= mark_it_up '#miu_test' %>
   </head>
   <body>
-    <% form_tag do %>
+    <%= form_tag do %>
       <%= text_area_tag "miu_test" %>
     <% end %>
   </body>
@@ -51,7 +53,7 @@ You will also need jQuery[http://jquery.com].
   <%= mark_it_up '#miu_test' %>
   </head>
   <body>
-  <% form_tag do %>
+  <%= form_tag do %>
     <%= text_area_tag "miu_test" %>
   <% end %>
   </body>
@@ -84,7 +86,7 @@ and here is example
   <%= mark_it_up '#miu_test' %>
   </head>
   <body>
-  <% form_tag do %>
+  <%= form_tag do %>
     <%= text_area_tag "miu_test" %>
   <% end %>
   </body>
@@ -104,7 +106,7 @@ See http://markitup.jaysalvat.com/documentation/ for the complete list of availa
   <%= mark_it_up '#miu_test', miu_settings %>
   </head>
   <body>
-  <% form_tag do %>
+  <%= form_tag do %>
     <%= text_area_tag "miu_test" %>
   <% end %>
   </body>
@@ -133,7 +135,7 @@ See http://markitup.jaysalvat.com/documentation/ for the complete list of availa
   <%= mark_it_up '#miu_test' %>
   </head>
   <body>
-  <% form_tag do %>
+  <%= form_tag do %>
     <%= text_area_tag "miu_test" %>
   <% end %>
   </body>
@@ -187,7 +189,7 @@ Here is the example how you can change preview depending which layout you select
   </script>
   </head>
   <body>
-  <% form_tag do %>
+  <%= form_tag do %>
     <%= select_tag "layout", options_for_select(%w(home admin default)) %>
     <!-- We observe layout select box and so we our preview can use right layout -->
     <%= observe_field :layout, :function => "miuSettings.previewParserPath='/my/preview/path?layout='+value;MyNamespace.reloadMarkItUp()" %>

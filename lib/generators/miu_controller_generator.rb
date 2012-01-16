@@ -21,7 +21,6 @@ class MiuControllerGenerator < Rails::Generators::Base
     dest = "#{Rails.root}/public/mark_it_up"
     puts "* Copying assets to #{dest}"
     FileUtils.cp_r(src, dest)
-    puts "* Run 'script/generate miu_controller' to generate MarkItUpController and to be able to use default preview parser"
   end
 
 end
