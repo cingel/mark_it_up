@@ -29,7 +29,7 @@ module MarkItUp
       inline_css = MarkItUp.markup_set.inject("") do |x,btn|
         icon = btn[:icon].blank? ? MarkItUp.default_icon : btn[:icon]
         icon.concat(".png") unless icon.match(MarkItUp::ICONS_EXTENSIONS_REGEXP)
-        x.concat(btn[:className].blank? ? "" : ".markItUp .#{btn[:className]} a {background-image:url(/#{MarkItUp.root}/icons/#{icon})}\n")
+        x.concat(btn[:className].blank? ? "" : ".markItUp .#{btn[:className]} a {background-image:url(#{image_path "/#{MarkItUp.root}/icons/#{icon}"})}\n")
       end
       css << return_html_considering_rails_version(%{
 <style type="text/css" media="all">
