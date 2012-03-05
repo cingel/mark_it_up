@@ -25,18 +25,18 @@ module MarkItUp
     end
 
     def include_mark_it_up_stylesheets
-      css = %{\n<link href="/#{MarkItUp.root}/skins/#{MarkItUp.skin}/style.css" media="all" rel="stylesheet" type="text/css" />}
+      css = stylesheet_link_tag("/#{MarkItUp.root}/skins/#{MarkItUp.skin}/style.css")
       inline_css = MarkItUp.markup_set.inject("") do |x,btn|
         icon = btn[:icon].blank? ? MarkItUp.default_icon : btn[:icon]
         icon.concat(".png") unless icon.match(MarkItUp::ICONS_EXTENSIONS_REGEXP)
         x.concat(btn[:className].blank? ? "" : ".markItUp .#{btn[:className]} a {background-image:url(/#{MarkItUp.root}/icons/#{icon})}\n")
       end
-      css << %{
+      css << return_html_considering_rails_version(%{
 <style type="text/css" media="all">
 #{inline_css}
 </style>
-      }
-      return_html_considering_rails_version(css)
+      })
+      css
     end
 
     private
